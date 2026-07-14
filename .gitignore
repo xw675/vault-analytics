@@ -1,0 +1,16 @@
+# Virtual environment — recreatable from scratch, never commit
+.venv/
+
+# Python bytecode cache — auto-generated on every run
+__pycache__/
+*.pyc
+
+# pytest cache — auto-generated when you run tests (Milestone 2)
+.pytest_cache/
+
+# OS junk (macOS)
+.DS_Store
+
+# Editor settings — personal, not part of the project
+.vscode/
+.idea/
