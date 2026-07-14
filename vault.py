@@ -1,16 +1,22 @@
 import argparse
 from pathlib import Path
 import sys
+import os
 
 def count_notes(vault_path: Path) -> int:
     """
     Count .md files under vault_path, recursively.
+    Skip directories starting with a dot (hidden directories).
     """
     count = 0
     
-    for file_path in vault_path.rglob("*.md"):
-        if file_path.is_file():
-            count += 1
+    for root, dirs, files in os.walk(vault_path):
+        # Skip hidden directories
+        dirs[:] = [d for d in dirs if not d.startswith('.')]
+        
+        for file in files:
+            if file.endswith('.md') and not file.startswith('.'):
+                count += 1
                 
     return count
 
