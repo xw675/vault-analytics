@@ -27,13 +27,13 @@ def main() -> None:
     if args.command == "stats":
         vault_path = args.vault
         if not vault_path.exists():
-            print(f"Error: Vault path {args.vault} does not exist.")
-            return
+            print(f"Error: Vault path {args.vault} does not exist.", file=sys.stderr)
+            sys.exit(1)
             
         if not vault_path.is_dir():
-            print(f"Error: Vault path {args.vault} is not a directory.")
-            return
-                
+            print(f"Error: Vault path {args.vault} is not a directory.", file=sys.stderr)
+            sys.exit(1)
+            
         note_count = count_notes(vault_path)
         print(f"Total notes in {args.vault.resolve()}: {note_count}")
         
